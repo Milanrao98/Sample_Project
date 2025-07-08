@@ -8,7 +8,7 @@ const soInput = document.querySelector(".SO");
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const userId = appNameInput.value.trim(); // renamed for clarity
+  const userId = appNameInput.value.trim();
 
   if (!userId) {
     alert("Please enter a User ID.");
@@ -21,7 +21,6 @@ form.addEventListener("submit", async function (e) {
 
     const data = await response.json();
 
-    // Populate form fields with user data
     impactInput.value = data.email || "";
     criticalityInput.value = data.company?.name || "";
     espLinkInput.value = data.phone || "";
