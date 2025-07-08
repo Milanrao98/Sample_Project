@@ -45,3 +45,5 @@ form.addEventListener("submit", async function (e) {
     alert("Could not fetch application data.");
   }
 });
+
+
