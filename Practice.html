@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Lookup Form</title>
   <link rel="stylesheet" href="Practice.css">
-  <title>Document</title>
 </head>
 <body>
-  <form action="" class="form">
-    <input type="text" class="box app_name" placeholder="app_name">
-    <input type="text" class="box impact_desc" placeholder="impact_desc">
-    <input type="text" class="box app_criticality" placeholder="app_criticality"> 
-    <input type="text" class="box esp_link" placeholder="esp_link">
-    <input type="text" class="box SO" placeholder="SO">
-    <button class="btn">Click here</button>
-  </form>
+  <div class="container">
+    <h1>User Details Lookup</h1>
+    <form class="form">
+      <label for="app_name">app_name</label>
+      <input type="number" class="box app_name" placeholder="Enter User ID (e.g. 1)" />
+
+      <label for="impact_desc">impact_desc</label>
+      <input type="text" class="box impact_desc" readonly />
+
+      <label for="app_criticality">app_criticality</label>
+      <input type="text" class="box app_criticality" readonly />
+
+      <label for="esp_link">esp_link</label>
+      <input type="text" class="box esp_link" readonly />
+
+      <label for="SO">SO</label>
+      <input type="text" class="box SO" readonly />
+
+      <button class="btn" type="submit">Fetch User</button>
+    </form>
+  </div>
+
   <script src="Practice.js"></script>
 </body>
 </html>
