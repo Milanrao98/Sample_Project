@@ -34,7 +34,7 @@ form.addEventListener("submit", async function (e) {
       return;
     }
 
-    // Use exact JSON keys: "Service Offering", "Monitoring Criticality", "Operational Status"
+    // ✅ Use exact JSON keys: "Service Offering", "Monitoring Criticality", "Operational Status"
     impactInput.value = matchedApps.map(app => app["Service Offering"]).join(", ");
     criticalityInput.value = matchedApps.map(app => app["Monitoring Criticality"]).join(", ");
     espLinkInput.value = matchedApps.map(app => app["Operational Status"]).join(", ");
