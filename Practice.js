@@ -8,25 +8,40 @@ const soInput = document.querySelector(".SO");
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const userId = appNameInput.value.trim();
+  const names = appNameInput.value
+    .split(",")
+    .map(name => name.trim().toLowerCase())
+    .filter(name => name);
 
-  if (!userId) {
-    alert("Please enter a User ID.");
+  if (names.length === 0) {
+    alert("Please enter at least one application name.");
     return;
   }
 
   try {
-    const response = await fetch(`https://dummyjson.com/users/${userId}`);
-    if (!response.ok) throw new Error("User not found");
+    const response = await fetch("https://raw.githubusercontent.com/Milanrao98/Sample_Project/main/Application%20Info.json");
+    if (!response.ok) throw new Error("Failed to load JSON");
 
     const data = await response.json();
 
-    impactInput.value = data.email || "";
-    criticalityInput.value = data.company?.name || "";
-    espLinkInput.value = data.phone || "";
-    soInput.value = data.address?.address || "";
+    const matchedApps = data.filter(app => {
+      const appName = (app["Name"] || "").trim().toLowerCase();
+      return names.includes(appName);
+    });
+
+    if (matchedApps.length === 0) {
+      alert("No matching apps found.");
+      return;
+    }
+
+    // Use exact JSON keys: "Service Offering", "Monitoring Criticality", "Operational Status"
+    impactInput.value = matchedApps.map(app => app["Service Offering"]).join(", ");
+    criticalityInput.value = matchedApps.map(app => app["Monitoring Criticality"]).join(", ");
+    espLinkInput.value = matchedApps.map(app => app["Operational Status"]).join(", ");
+    soInput.value = matchedApps.length;
+
   } catch (error) {
-    console.error("Fetch error:", error);
-    alert("Could not fetch user. Please check the ID.");
+    console.error("Error fetching JSON:", error);
+    alert("Could not fetch application data.");
   }
 });
