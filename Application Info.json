@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Acceleration Cache",
+    "Service Offering": "BRE - Support Services API",
+    "Monitoring Criticality": "2",
+    "Operational Status": "Operational"
+  },
+  {
+    "Name": "Access Service User to Contract (ACCONT)",
+    "Service Offering": "Service Contract User Entitlement",
+    "Monitoring Criticality": "3",
+    "Operational Status": "Operational"
+  },
+  {
+    "Name": "ACME",
+    "Service Offering": "Cryptographic Services (S&TO)",
+    "Monitoring Criticality": "2",
+    "Operational Status": "Operational"
+  },
+  {
+    "Name": "Acquisition Integration API Framework",
+    "Service Offering": "M&A: Business and Systems Enablement",
+    "Monitoring Criticality": "3",
+    "Operational Status": "Operational"
+  }
+]
