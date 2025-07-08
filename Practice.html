@@ -3,29 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Lookup Form</title>
+  <title>Application Lookup</title>
   <link rel="stylesheet" href="Practice.css">
 </head>
 <body>
   <div class="container">
-    <h1>User Details Lookup</h1>
+    <h1>Application Details</h1>
     <form class="form">
-      <label for="app_name">app_name</label>
-      <input type="number" class="box app_name" placeholder="Enter User ID (e.g. 1)" />
+      <label for="app_name">Application Name</label>
+      <input type="text" class="box app_name" placeholder="Application Name" />
 
-      <label for="impact_desc">impact_desc</label>
+      <label for="impact_desc">Service Offering</label>
       <input type="text" class="box impact_desc" readonly />
 
-      <label for="app_criticality">app_criticality</label>
+      <label for="app_criticality">Monitoring Criticality</label>
       <input type="text" class="box app_criticality" readonly />
 
-      <label for="esp_link">esp_link</label>
+      <label for="esp_link">Operational Status</label>
       <input type="text" class="box esp_link" readonly />
 
-      <label for="SO">SO</label>
-      <input type="text" class="box SO" readonly />
-
-      <button class="btn" type="submit">Fetch User</button>
+      <button class="btn" type="submit">Fetch App Info</button>
     </form>
   </div>
 
