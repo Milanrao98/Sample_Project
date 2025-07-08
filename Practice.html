@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Application Lookup</title>
-  <link rel="stylesheet" href="Practice.css">
+  <link rel="stylesheet" href="Practice.css" />
 </head>
 <body>
   <div class="container">
     <h1>Application Details</h1>
     <form class="form">
       <label for="app_name">Application Name</label>
-      <input type="text" class="box app_name" placeholder="Application Name" />
+      <input type="text" class="box app_name" placeholder="e.g. Acceleration Cache, ACME" autocomplete="off" />
+      <div class="autocomplete-box"></div>
 
       <label for="impact_desc">Service Offering</label>
       <input type="text" class="box impact_desc" readonly />
@@ -29,5 +30,4 @@
   <script src="Practice.js"></script>
 </body>
 </html>
-
 
