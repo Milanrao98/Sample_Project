@@ -8,9 +8,10 @@ const suggestionsBox = document.querySelector(".autocomplete-box");
 
 let appList = [];
 
+// Load app names for autocomplete
 async function loadAppNames() {
   try {
-    const response = await fetch("https://raw.githubusercontent.com/Milanrao98/Sample_Project/main/Application%20Info.json");
+    const response = await fetch("/data/Application%20Info.json"); // ✅ local file path
     const data = await response.json();
     appList = data.map(app => app["Name"]);
   } catch (error) {
@@ -19,7 +20,7 @@ async function loadAppNames() {
 }
 loadAppNames();
 
-// Show autocomplete suggestions while typing
+// Show autocomplete suggestions
 appNameInput.addEventListener("input", () => {
   const currentText = appNameInput.value.split(",").pop().trim().toLowerCase();
 
@@ -41,7 +42,7 @@ appNameInput.addEventListener("input", () => {
   suggestionsBox.innerHTML = `<ul>${listItems}</ul>`;
 });
 
-// Click on suggestion
+// Select suggestion
 suggestionsBox.addEventListener("click", (e) => {
   if (e.target.tagName === "LI") {
     const selected = e.target.textContent;
@@ -67,7 +68,7 @@ form.addEventListener("submit", async function (e) {
   }
 
   try {
-    const response = await fetch("https://raw.githubusercontent.com/Milanrao98/Sample_Project/main/Application%20Info.json");
+    const response = await fetch("/data/Application%20Info.json");
     if (!response.ok) throw new Error("Failed to load JSON");
 
     const data = await response.json();
@@ -82,13 +83,37 @@ form.addEventListener("submit", async function (e) {
       return;
     }
 
+    // Populate fields
     impactInput.value = matchedApps.map(app => app["Service Offering"]).join(", ");
     criticalityInput.value = matchedApps.map(app => app["Monitoring Criticality"]).join(", ");
     espLinkInput.value = matchedApps.map(app => app["Operational Status"]).join(", ");
     soInput.value = matchedApps.length;
 
+    // ✅ Send to backend to write into text file
+    fetch("/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        app_name: appNameInput.value,
+        impact_desc: impactInput.value,
+        app_criticality: criticalityInput.value,
+        esp_link: espLinkInput.value,
+      }),
+    })
+    .then(res => res.text())
+    .then(msg => {
+      console.log("Server response:", msg);
+      alert("Data successfully saved to file!");
+    })
+    .catch(err => {
+      console.error("Error saving data:", err);
+      alert("Failed to save data to file.");
+    });
+
   } catch (error) {
-    console.error("Error fetching JSON:", error);
+    console.error("Error processing form:", error);
     alert("Could not fetch application data.");
   }
 });
